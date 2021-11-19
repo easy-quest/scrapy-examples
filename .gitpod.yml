@@ -2,6 +2,7 @@ tasks:
   - init: |
       python -m pip install -U pip setuptools wheel pip-tools bpython
     command: |
+      pip-sync
       python -m pip install -U -r requirements.txt
   
 ports:
