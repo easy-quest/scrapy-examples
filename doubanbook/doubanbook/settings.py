@@ -17,7 +17,7 @@ BOT_NAME = 'doubanbook'
 SPIDER_MODULES = ['doubanbook.spiders']
 NEWSPIDER_MODULE = 'doubanbook.spiders'
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
+# Crawl ответственно, определяя себя (и ваш сайт) на пользовательском агенте
 #USER_AGENT = 'doubanbook (+http://www.yourdomain.com)'
 
 # DOWNLOADER_MIDDLEWARES = {

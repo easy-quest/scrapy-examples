@@ -6,7 +6,7 @@
 from scrapy.item import Item, Field
 
 class DoubanbookItem(Item):
-    # define the fields for your item here like:
+    # Определите поля для вашего товара здесь:
     # name = Field()
     title = Field()
     link = Field()

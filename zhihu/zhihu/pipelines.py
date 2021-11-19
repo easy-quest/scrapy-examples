@@ -38,7 +38,7 @@ class RedisPipeline(object):
 
     def process_item(self, item, spider):
         if not item['id']:
-            print 'no id item!!'
+            print('no id item!!')
 
         str_recorded_item = self.r.get(item['id'])
         final_item = None

@@ -38,7 +38,7 @@ class HrtencentSpider(CrawlSpider):
             # item['duty'] = site.css('.c .l2::text').extract()
             item['link'] = response.url
             items.append(item)
-            print repr(item).decode("unicode-escape") + '\n'
+            print(repr(item).decode("unicode-escape") + '\n')
         # info('parsed ' + str(response))
         self.parse_1(response)
         return items
