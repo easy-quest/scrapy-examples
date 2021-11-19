@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 
 
 from scrapy.selector import Selector
@@ -22,7 +22,7 @@ from misc.spider import CommonSpider
 import pprint
 class MyPrettyPrinter(pprint.PrettyPrinter):
     def format(self, object, context, maxlevels, level):
-        if isinstance(object, unicode):
+        if isinstance(object, str):
             return (object.encode('utf8'), True, False)
         return pprint.PrettyPrinter.format(self, object, context, maxlevels, level)
 pp = MyPrettyPrinter()

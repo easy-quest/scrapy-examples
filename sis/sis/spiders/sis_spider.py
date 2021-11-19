@@ -77,7 +77,7 @@ class sisSpider(CrawlSpider):
             item['comment'] = thread.css('td[class=nums] strong::text').extract()[0]
             item['view'] = thread.css('td[class=nums] em::text').extract()[0]
             item['post_time'] = thread.css('td[class=author] em::text').extract()[0]
-            print(' ', item['post_time'], item['star'], '|', item['title'], item['link'], item['comment'], item['view'])
+            print((' ', item['post_time'], item['star'], '|', item['title'], item['link'], item['comment'], item['view']))
 
             # NOTE: content is only for debug purpose
             # item['content'] = thread_content

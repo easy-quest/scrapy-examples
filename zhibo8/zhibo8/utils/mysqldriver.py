@@ -58,7 +58,7 @@ class MySQL:
         result = self._cur.execute(sql)
       except MySQLdb.Error as e:
         self.error_code = e.args[0]
-        print("数据库错误代码:",e.args[0],e.args[1])
+        print(("数据库错误代码:",e.args[0],e.args[1]))
         result = False
       return result
 
@@ -70,7 +70,7 @@ class MySQL:
         self._conn.commit()
       except MySQLdb.Error as e:
         self.error_code = e.args[0]
-        print("数据库错误代码:",e.args[0],e.args[1])
+        print(("数据库错误代码:",e.args[0],e.args[1]))
         result = False
       return result
       

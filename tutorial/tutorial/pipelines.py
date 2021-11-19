@@ -10,7 +10,7 @@ from scrapy.contrib.exporter import XmlItemExporter
 class TutorialPipeline(object):
     def process_item(self, item, spider):
         for field in item:
-            print(field + ': ' + item[field][0])
+            print((field + ': ' + item[field][0]))
         return item
 
 

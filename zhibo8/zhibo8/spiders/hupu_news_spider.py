@@ -18,4 +18,4 @@ class HupuNewsSpider(scrapy.Spider):
             #print a.extract()
             title = li.xpath('div/h4/a[1]/text()').extract()
             link = li.xpath('div/h4/a[1]/@href').extract()
-            print(title[0],link[0])
+            print((title[0],link[0]))

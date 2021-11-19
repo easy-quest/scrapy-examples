@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import MySQLdb
-from utils.mysqldriver import MySQL
+from .utils.mysqldriver import MySQL
 
 class SportPipeline(object):
     _db = None

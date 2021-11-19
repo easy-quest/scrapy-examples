@@ -2,7 +2,7 @@
 
 import re
 import json
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 
 from scrapy.selector import Selector
@@ -71,7 +71,7 @@ class ZhihuSpider(CrawlSpider):
     def traversal(self, sel, rules, item):
         # print 'traversal:', sel, rules.keys()
         if '__use' in rules:
-            for nk, nv in rules.items():
+            for nk, nv in list(rules.items()):
                 if nk == '__use':
                     continue
                 if nk not in item:
@@ -81,7 +81,7 @@ class ZhihuSpider(CrawlSpider):
                 else:
                     item[nk] = []
         else:
-            for nk, nv in rules.items():
+            for nk, nv in list(rules.items()):
                 for i in sel.css(nk):
                     self.traversal(i, nv, item)
 

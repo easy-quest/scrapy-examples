@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 import pdb
 
 
@@ -20,7 +20,7 @@ from misc.log import *
 from misc.spider import CommonSpider
 
 
-import BasicSpiderConfig
+from . import BasicSpiderConfig
 
 
 class general_spiderSpider(CommonSpider):
@@ -44,7 +44,7 @@ class general_spiderSpider(CommonSpider):
         info(list_css_rules)
         x = self.parse_with_rules(response, list_css_rules, dict)
         # x = self.parse_with_rules(response, self.content_css_rules, dict)
-        print(json.dumps(x, ensure_ascii=False, indent=2))
+        print((json.dumps(x, ensure_ascii=False, indent=2)))
         # pp.pprint(x)
         # return self.parse_with_rules(response, self.css_rules, general_spiderItem)
         return x

@@ -53,7 +53,7 @@ class MySQLStorePipeline(object):
             )
             self.conn.commit()
         except MySQLdb.Error as e:
-            print("Error %d: %s" % (e.args[0], e.args[1]))
+            print(("Error %d: %s" % (e.args[0], e.args[1])))
 
         return item
 

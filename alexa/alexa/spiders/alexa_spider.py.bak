@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 
 
 from scrapy.selector import Selector
@@ -96,7 +96,7 @@ class alexaCNSpider(CrawlSpider):
             if remainder:
                 item['description'] += remainder[0].extract()
             # more specific
-            item['category'] = urllib.unquote('/'.join(response.url.split('/')[-3:])).decode('utf-8')
+            item['category'] = urllib.parse.unquote('/'.join(response.url.split('/')[-3:])).decode('utf-8')
             items.append(item)
         return items
 

@@ -4,22 +4,23 @@ zhibo8比分
 """
 import scrapy
 import sys
-reload(sys)
+import importlib
+importlib.reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 game_type_list = [
-        u'CBA', 
-        u'NBA', 
-        u'法甲', 
-        u'英超', 
-        u'西甲', 
-        u'意甲', 
-        u'德甲', 
-        u'足总杯', 
-        u'国王杯', 
-        u'德国杯', 
-        u'解放者杯',
-        u'意大利杯',
+        'CBA', 
+        'NBA', 
+        '法甲', 
+        '英超', 
+        '西甲', 
+        '意甲', 
+        '德甲', 
+        '足总杯', 
+        '国王杯', 
+        '德国杯', 
+        '解放者杯',
+        '意大利杯',
  ] 
 
 
