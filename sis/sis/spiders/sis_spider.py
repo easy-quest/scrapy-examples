@@ -3,7 +3,7 @@
 import re
 import json
 import sys
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 
 from scrapy.selector import Selector
@@ -48,7 +48,7 @@ class sisSpider(CrawlSpider):
             item = SisItem()
             item['title'] = site.css('.postmessage h2::text').extract()
             imgs = site.css('.postmessage img::attr(src)').extract()
-            item['imgs'] = filter(lambda x: not x.endswith('.gif'), imgs)
+            item['imgs'] = [x for x in imgs if not x.endswith('.gif')]
             item['torrents'] = [urljoin(response.url, x) for x in site.css('.t_attachlist a[href*=attachment]::attr(href)').extract()]
             # item['duty'] = site.css('.c .l2::text').extract()
             item['link'] = response.url
@@ -77,7 +77,7 @@ class sisSpider(CrawlSpider):
             item['comment'] = thread.css('td[class=nums] strong::text').extract()[0]
             item['view'] = thread.css('td[class=nums] em::text').extract()[0]
             item['post_time'] = thread.css('td[class=author] em::text').extract()[0]
-            print ' ', item['post_time'], item['star'], '|', item['title'], item['link'], item['comment'], item['view']
+            print(' ', item['post_time'], item['star'], '|', item['title'], item['link'], item['comment'], item['view'])
 
             # NOTE: content is only for debug purpose
             # item['content'] = thread_content

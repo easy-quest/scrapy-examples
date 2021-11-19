@@ -1,6 +1,6 @@
 from scrapy import log
-from proxy import PROXIES
-from agents import AGENTS
+from .proxy import PROXIES
+from .agents import AGENTS
 
 import random
 
@@ -13,7 +13,7 @@ class CustomHttpProxyMiddleware(object):
             p = random.choice(PROXIES)
             try:
                 request.meta['proxy'] = "http://%s" % p['ip_port']
-            except Exception, e:
+            except Exception as e:
                 log.msg("Exception %s" % e, _level=log.CRITICAL)
 
     def use_proxy(self, request):

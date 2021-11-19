@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 import pdb
 
 
@@ -43,6 +43,6 @@ class v2exSpider(CommonSpider):
         info('Parse '+response.url)
         # import pdb; pdb.set_trace()
         x = self.parse_with_rules(response, self.list_css_rules, dict)
-        print(json.dumps(x, ensure_ascii=False, indent=2))
+        print((json.dumps(x, ensure_ascii=False, indent=2)))
         #pp.pprint(x)
         # return self.parse_with_rules(response, self.css_rules, v2exItem)

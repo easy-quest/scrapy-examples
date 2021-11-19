@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 import pdb
 
 
@@ -53,7 +53,7 @@ class proxylistSpider(CommonSpider):
         pp.pprint(x)
         for i in x:
             item = freeProxyListItem()
-            for k, v in i.items():
+            for k, v in list(i.items()):
                 item[k] = v
             items.append(item)
         return items

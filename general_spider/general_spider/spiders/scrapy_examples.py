@@ -1,5 +1,5 @@
 
-from BasicSpiderConfig import ExRule
+from .BasicSpiderConfig import ExRule
 
 class Config:
 

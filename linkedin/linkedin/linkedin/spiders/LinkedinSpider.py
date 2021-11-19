@@ -7,7 +7,7 @@ from linkedin.items import LinkedinItem, PersonProfileItem
 from os import path
 from linkedin.parser.HtmlParser import HtmlParser
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import string
 from bs4 import UnicodeDammit
 from linkedin.db import MongoDBClient
@@ -44,7 +44,7 @@ class LinkedinspiderSpider(CrawlSpider):
         elif index_level == 5:
             personProfile = HtmlParser.extract_person_profile(hxs)
             linkedin_id = self.get_linkedin_id(response.url)
-            linkedin_id = UnicodeDammit(urllib.unquote_plus(linkedin_id)).markup
+            linkedin_id = UnicodeDammit(urllib.parse.unquote_plus(linkedin_id)).markup
             if linkedin_id:
                 personProfile['_id'] = linkedin_id
                 personProfile['url'] = UnicodeDammit(response.url).markup

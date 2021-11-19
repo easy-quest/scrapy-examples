@@ -9,7 +9,7 @@ This tutorial include several spiders:
 
 
 import re
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 
 from scrapy.selector import Selector

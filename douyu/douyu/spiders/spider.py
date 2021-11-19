@@ -1,7 +1,7 @@
 import re
 import json
-from urlparse import urlparse
-import urllib
+from urllib.parse import urlparse
+import urllib.request, urllib.parse, urllib.error
 import pdb
 
 
@@ -55,7 +55,7 @@ class douyuSpider(CommonSpider):
         info('Parse '+response.url)
         #x = self.parse_with_rules(response, self.list_css_rules, dict)
         x = self.parse_with_rules(response, self.list_css_rules_for_item, douyuItem)
-        print(len(x))
+        print((len(x)))
         # print(json.dumps(x, ensure_ascii=False, indent=2))
         # pp.pprint(x)
         # return self.parse_with_rules(response, self.list_css_rules, douyuItem)

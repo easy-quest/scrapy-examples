@@ -30,7 +30,7 @@ class PagesSpider(Spider):
     start_urls = ['http://www.ziroom.com/z/nl/z3.html?p=1']
 
     def parse(self, response):
-        print response.url
+        print(response.url)
         page = re.findall('p=(\d+)', response.url)[0]
 
         houseList = response.xpath('//ul[@id="houseList"]/li')

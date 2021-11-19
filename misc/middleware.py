@@ -1,8 +1,8 @@
 import logging as log
 import random
 
-from agents import AGENTS
-from proxy import FREE_PROXIES, PROXIES
+from .agents import AGENTS
+from .proxy import FREE_PROXIES, PROXIES
 
 
 class CustomHttpProxyFromMysqlMiddleware(object):
@@ -14,7 +14,7 @@ class CustomHttpProxyFromMysqlMiddleware(object):
             p = random.choice(self.proxies)
             try:
                 request.meta['proxy'] = "http://%s" % p['ip_port']
-                print(request.meta['proxy'])
+                print((request.meta['proxy']))
             except Exception as e:
                 #log.msg("Exception %s" % e, _level=log.CRITICAL)
                 log.critical("Exception %s" % e)

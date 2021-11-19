@@ -2,7 +2,7 @@ from linkedin.items import PersonProfileItem
 from bs4 import UnicodeDammit
 from w3lib.url import url_query_cleaner
 import random
-import LinkedinParser
+from . import LinkedinParser
 
 
 class HtmlParser:    

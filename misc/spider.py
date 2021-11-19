@@ -2,7 +2,7 @@
 
 import re
 import json
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 
 from scrapy.selector import Selector
@@ -71,7 +71,7 @@ class CommonSpider(CrawlSpider):
         return contents
 
     def extract_items(self, sel, rules, item):
-        for nk, nv in rules.items():
+        for nk, nv in list(rules.items()):
             if nk in ('__use', '__list'):
                 continue
             if nk not in item:
@@ -97,7 +97,7 @@ class CommonSpider(CrawlSpider):
             else:
                 self.extract_items(sel, rules, item)
         else:
-            for nk, nv in rules.items():
+            for nk, nv in list(rules.items()):
                 for i in sel.css(nk):
                     self.traversal(i, nv, item_class, item, items)
 
@@ -123,7 +123,7 @@ class CommonSpider(CrawlSpider):
     def traversal_dict(self, sel, rules, item_class, item, items, force_1_item):
         #import pdb; pdb.set_trace()
         item = {}
-        for k, v in rules.items():
+        for k, v in list(rules.items()):
             if type(v) != dict:
                 if k in self.keywords:
                     continue

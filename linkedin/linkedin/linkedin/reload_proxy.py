@@ -3,9 +3,9 @@ import os
 import re
 import time
 import datetime
-from urllib2 import URLError, HTTPError
+from urllib.error import URLError, HTTPError
 import sys
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 ######################################
 # Loader
@@ -60,32 +60,32 @@ class ProxyResource:
 
 
     def __loadFromProxyServer(self, proxies, url):
-        print("load proxies from %s " % url)
+        print(("load proxies from %s " % url))
         source = self.html_getter.getHtmlRetry(url, 3)
-        source = unicode(source, "UTF-8").encode("UTF-8")
+        source = str(source, "UTF-8").encode("UTF-8")
         print(source)        
         results = source.split("\n")[2:-2]
         count = 0
         if results is not None:
             for x in results:
                 result = x.split(":")
-                print("hi " + x)
+                print(("hi " + x))
                 ip = result[0]
                 port = result[1]
-                print("length:%s ip:%s  port:%s " % (len(result), ip, port))
+                print(("length:%s ip:%s  port:%s " % (len(result), ip, port)))
                 model = ProxyModel(ip, port, "proxyServer")
                 proxies.append(model)
                 count += 1
-        print("---proxyLoader---:load proxy from proxyServer get %s " % count)
+        print(("---proxyLoader---:load proxy from proxyServer get %s " % count))
         
     def __loadProxyFromURL(self, proxies, url, pattern):
         '''Put model into ProxyModel, return has_next_page.'''
 
         p_nextpage = re.compile("<a href=[^>]*>下一页</a>")  # copy
 
-        print("---proxyloader---:load proxy from %s" % url)
+        print(("---proxyloader---:load proxy from %s" % url))
         source = self.html_getter.getHtmlRetry(url, 3)
-        source = unicode(source, "gbk").encode("UTF-8")
+        source = str(source, "gbk").encode("UTF-8")
         foundNextPage = p_nextpage.search(source)
 
         results = pattern.findall(source)
@@ -100,7 +100,7 @@ class ProxyResource:
                 model.validate_date = result[4]
                 proxies.append(model)
                 count += 1
-        print("---proxyloader---:load proxy from %s (get %s)" % (url, count))
+        print(("---proxyloader---:load proxy from %s (get %s)" % (url, count)))
         return foundNextPage
 
 
@@ -108,7 +108,7 @@ class ProxyResource:
         '''Save list of ProxyModel in a file.'''
         if os.path.exists(file_abspath):
             os.remove(file_abspath)
-            print("$proxy/> remove %s." % file_abspath)
+            print(("$proxy/> remove %s." % file_abspath))
 
         # write to file
         f = file(file_abspath, "w")
@@ -116,7 +116,7 @@ class ProxyResource:
             f.write(proxyModel.to_line())
             f.write("\n")
         f.close()
-        print("$proxy/> write proxies to %s." % f.name)
+        print(("$proxy/> write proxies to %s." % f.name))
 
 def test_load_proxycn():
     proxyRes = ProxyResource()
@@ -212,8 +212,8 @@ class WebPageDownloader:
 
             error_msg = None
             try:
-                proxy_handler = urllib2.ProxyHandler({})
-                opener = urllib2.build_opener(proxy_handler)
+                proxy_handler = urllib.request.ProxyHandler({})
+                opener = urllib.request.build_opener(proxy_handler)
                 opener.addheaders = REQUEST_HEADER
                 html = opener.open(url)
                 source = html.read()
@@ -226,7 +226,7 @@ class WebPageDownloader:
 
             # on error
             if error_msg is not None:
-                print("[X] HtmlGetter err:%s, retry:%s." % (error_msg, retry_count))
+                print(("[X] HtmlGetter err:%s, retry:%s." % (error_msg, retry_count)))
 
             if error_msg is None and self.validate_html(html):
                 print("[v] success access webpage.")
@@ -245,7 +245,7 @@ class WebPageDownloader:
     def validate_html(self, html):
         if html is None : return False
         if html.code in HTTPErrors:
-            print("error found: %s: %s " % HTTPErrors[html.code])
+            print(("error found: %s: %s " % HTTPErrors[html.code]))
             return False
         else:
             return True

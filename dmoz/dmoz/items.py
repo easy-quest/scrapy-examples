@@ -6,7 +6,7 @@
 from scrapy.item import Item, Field
 
 class dmozItem(Item):
-    # define the fields for your item here like:
+    # Определите поля для вашего товара здесь, как:
     url = Field()
     name = Field()
     description = Field()

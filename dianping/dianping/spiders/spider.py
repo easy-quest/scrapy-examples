@@ -11,20 +11,20 @@ except:
 
 from misc.spider import CommonSpider
 
-BAIDU_GEO = u'http://api.map.baidu.com/geocoder/v2/?address={}&output=json&ak=gQsCAgCrWsuN99ggSIjGn5nO'
+BAIDU_GEO = 'http://api.map.baidu.com/geocoder/v2/?address={}&output=json&ak=gQsCAgCrWsuN99ggSIjGn5nO'
 
 base_category_url = "http://www.dianping.com/search/category"
 
 start_url_dict = {
-    u"足疗按摩": "/2/30/g141r1471",
-    u"中医养生": "/2/30/g2827r1471",
-    u"健康体检": "/2/80/g612",
-    u"妇幼保健": "/2/70/g258",
-    u"美容Spa": "/2/50/g158",
-    u"整形塑体": "/2/85/g183",
-    u"运动健身": "/2/45/g147",
-    u"口腔健康": "/2/85/g182",
-    u"药店": "/2/85/g235"
+    "足疗按摩": "/2/30/g141r1471",
+    "中医养生": "/2/30/g2827r1471",
+    "健康体检": "/2/80/g612",
+    "妇幼保健": "/2/70/g258",
+    "美容Spa": "/2/50/g158",
+    "整形塑体": "/2/85/g183",
+    "运动健身": "/2/45/g147",
+    "口腔健康": "/2/85/g182",
+    "药店": "/2/85/g235"
 }
 
 
@@ -44,7 +44,7 @@ class dianpingSpider(CommonSpider):
     allowed_domains = ["dianping.com"]
 
     def start_requests(self):
-        for k, v in start_url_dict.items():
+        for k, v in list(start_url_dict.items()):
             for i in range(1, 3):
                 url = base_category_url + v + 'p{}'.format(i)
                 yield Request(url, callback=self.parse, meta={'category': k})
@@ -66,7 +66,7 @@ class dianpingSpider(CommonSpider):
         shop['address'] = clean_string(address)
         phone_number = hxs.css('.tel span.item::text').extract_first()
         shop['phone_number'] = clean_string(phone_number)
-        path = u'//span[contains(text(), "营业时间：")]/following-sibling::span/text()'
+        path = '//span[contains(text(), "营业时间：")]/following-sibling::span/text()'
         opening_hours = hxs.xpath(path).extract_first()
         shop['opening_hours'] = clean_string(opening_hours)
         geo = address_to_geo(address)
