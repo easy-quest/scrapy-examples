@@ -1,1 +1,1 @@
-Non
+find . -name '*.pyc' | xargs rm
