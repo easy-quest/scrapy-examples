@@ -6,20 +6,21 @@ scrapy-examples
 Не используйте это, чтобы сделать что-то незаконное!
 
 ***
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#git@github.com:easy-quest/scrapy-examples.git)
 
 ## Реальный пример паука: Dourbanbook
 
 #### Руководство
 
-    ```shell
-    git clone https://github.com/geekan/scrapy-examples
-    ```
-    ```shell
-    cd scrapy-examples/doubanbook
-    ```
-    ```console
-    scrapy crawl doubanbook
-    ```
+```shell
+git clone git@github.com:easy-quest/scrapy-examples.git
+```
+```shell
+cd scrapy-examples/doubanbook
+```
+```console
+scrapy crawl doubanbook
+```
 
 #### Depth
 
