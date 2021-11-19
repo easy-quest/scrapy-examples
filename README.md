@@ -1,35 +1,41 @@
 scrapy-examples
 ==============
 
-Multifarious scrapy examples with integrated proxies and agents, which make you comfy to write a spider.
+Многофункциональные сцепные примеры со встроенным прокси и агентами, которые позволяют вам удобно написать паук.
 
-Don't use it to do anything illegal!
+Не используйте это, чтобы сделать что-то незаконное!
 
 ***
 
-## Real spider example: doubanbook
+## Реальный пример паука: Dourbanbook
 
-#### Tutorial
+#### Руководство
 
+    ```shell
     git clone https://github.com/geekan/scrapy-examples
+    ```
+    ```shell
     cd scrapy-examples/doubanbook
+    ```
+    ```console
     scrapy crawl doubanbook
+    ```
 
 #### Depth
 
-There are several depths in the spider, and the spider gets
-real data from depth2.
+Есть несколько глубин в пауке, а паук получает
+реальные данные из depth2.
 
 - Depth0: The entrance is `http://book.douban.com/tag/`
 - Depth1: Urls like `http://book.douban.com/tag/外国文学` from depth0
 - Depth2: Urls like `http://book.douban.com/subject/1770782/` from depth1
 
-#### Example image
+#### Пример изображения
 ![douban book](https://raw.githubusercontent.com/geekan/scrapy-examples/master/doubanbook/sample.jpg)
 
 ***
 
-## Avaiable Spiders
+## Доступные пауки
 
 * tutorial
   * dmoz_item
@@ -45,10 +51,10 @@ real data from depth2.
   * alexa
   * alexa.cn
 
-## Advanced
+## Передовой
 
-* Use `parse_with_rules` to write a spider quickly.  
-  See dmoz spider for more details.
+* Используйте `parse_with_Rules`, чтобы писать паук быстро. 
+  Смотрите Dmoz Spider для более подробной информации.
 
 * Proxies
   * If you don't want to use proxy, just comment the proxy middleware in settings.  
@@ -57,17 +63,17 @@ real data from depth2.
 * Notice
   * Don't use `parse` as your method name, it's an inner method of CrawlSpider.
 
-### Advanced Usage
+### Расширенное использование
 
-* Run `./startproject.sh <PROJECT>` to start a new project.  
-  It will automatically generate most things, the only left things are:
+* Запустить `./startproject.sh <Project>` Чтобы начать новый проект.  
+  Он автоматически генерирует большинство вещей, только левые вещи:
   * `PROJECT/PROJECT/items.py`
   * `PROJECT/PROJECT/spider/spider.py`
 
-#### Example to hack `items.py` and `spider.py`
+#### Пример взломал `items.py` а также `spider.py`
 
-Hacked `items.py` with additional fields `url` and `description`:  
-```
+Взломанные `items.py` с дополнительными полями` URL` и`description`:  
+```python
 from scrapy.item import Item, Field
 
 class exampleItem(Item):
@@ -76,23 +82,24 @@ class exampleItem(Item):
     description = Field()
 ```
 
-Hacked `spider.py` with start rules and css rules (here only display the class exampleSpider):  
-```
+Взломал `spider.py` с началаьными правилами и правилами CSS (здесь только отображать) class exampleSpider):  
+
+```python
 class exampleSpider(CommonSpider):
     name = "dmoz"
     allowed_domains = ["dmoz.org"]
     start_urls = [
         "http://www.dmoz.com/",
     ]
-    # Crawler would start on start_urls, and follow the valid urls allowed by below rules.
+    # Shrawler начнется на Start_urls, и следуйте действительным URL-адресам, разрешенным ниже правила.
     rules = [
         Rule(sle(allow=["/Arts/", "/Games/"]), callback='parse', follow=True),
     ]
 
     css_rules = {
         '.directory-url li': {
-            '__use': 'dump', # dump data directly
-            '__list': True, # it's a list
+            '__use': 'dump', # непосредственно давить данные
+            '__list': True, # Это список
             'url': 'li > a::attr(href)',
             'name': 'a::text',
             'description': 'li::text',
@@ -101,7 +108,7 @@ class exampleSpider(CommonSpider):
 
     def parse(self, response):
         info('Parse '+response.url)
-        # parse_with_rules is implemented here:
+        # Parse_with_Rules реализован здесь:
         #   https://github.com/geekan/scrapy-examples/blob/master/misc/spider.py
         self.parse_with_rules(response, self.css_rules, exampleItem)
 ```
