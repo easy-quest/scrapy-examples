@@ -1,0 +1,14 @@
+tasks:
+  - init: |
+      python -m pip install -U pip setuptools wheel pip-tools bpython
+    command: |
+      python -m pip install -U -r requirements.txt
+  
+ports:
+  - port: 8000
+    visibility: private
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - ms-python.python

@@ -6,7 +6,7 @@ scrapy-examples
 Не используйте это, чтобы сделать что-то незаконное!
 
 ***
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#git@github.com:easy-quest/scrapy-examples.git)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/easy-quest/scrapy-examples.git)
 
 ## Реальный пример паука: Dourbanbook
 
