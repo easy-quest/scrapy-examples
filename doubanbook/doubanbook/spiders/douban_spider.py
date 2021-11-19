@@ -1,19 +1,18 @@
-import re
 import json
-
+import re
 
 from scrapy.selector import Selector
+
 try:
     from scrapy.spiders import Spider
 except:
     from scrapy.spiders import BaseSpider as Spider
-from scrapy.utils.response import get_base_url
-from scrapy.spiders import CrawlSpider, Rule
-from scrapy.linkextractors import LinkExtractor as sle
-
 
 from doubanbook.items import *
 from misc.log import *
+from scrapy.linkextractors import LinkExtractor as sle
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.utils.response import get_base_url
 
 
 class DoubanBookSpider(CrawlSpider):
@@ -39,12 +38,12 @@ class DoubanBookSpider(CrawlSpider):
             item['content_intro'] = site.css('#link-report .intro p::text').extract()
             items.append(item)
             # print repr(item).decode("unicode-escape") + '\n'
-            print item
-        # info('parsed ' + str(response))
+            print(item)
+        # Информация('parsed ' + str(response))
         return items
 
     def parse_1(self, response):
-        # url cannot encode to Chinese easily.. XXX
+        # URL не может легко кодировать на китайский.. XXX
         info('parsed ' + str(response))
 
     def process_request(self, request):

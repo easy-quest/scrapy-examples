@@ -1,6 +1,6 @@
 '''
-This proxy is goagent/wallproxy
-If you want to disable it, plz configure settings.py
+Этот прокси goagent/wallproxy
+Если вы хотите отключить его, PLZ Configure settings.py
 '''
 PROXIES = [
     #{"ip_port": "127.0.0.1:8087"}, #goagent

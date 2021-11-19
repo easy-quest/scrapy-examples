@@ -20,7 +20,8 @@ class JsonWithEncodingPipeline(object):
         self.file = codecs.open('data_utf8.json', 'w', encoding='utf-8')
 
     def process_item(self, item, spider):
-        line = json.dumps(OrderedDict(item), ensure_ascii=False, sort_keys=False) + "\n"
+        line = json.dumps(OrderedDict(
+            item), ensure_ascii=False, sort_keys=False) + "\n"
         self.file.write(line)
         return item
 
@@ -35,7 +36,7 @@ class RedisPipeline(object):
 
     def process_item(self, item, spider):
         if not item['id']:
-            print 'no id item!!'
+            print('no id item!!')
 
         str_recorded_item = self.r.get(item['id'])
         final_item = None

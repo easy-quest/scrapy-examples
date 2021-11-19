@@ -20,10 +20,10 @@ NEWSPIDER_MODULE = 'doubanbook.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'doubanbook (+http://www.yourdomain.com)'
 
-DOWNLOADER_MIDDLEWARES = {
-    #'misc.middleware.CustomHttpProxyMiddleware': 400,
-    'misc.middleware.CustomUserAgentMiddleware': 401,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#     #'misc.middleware.CustomHttpProxyMiddleware': 400,
+#     'misc.middleware.CustomUserAgentMiddleware': 401,
+# }
 
 ITEM_PIPELINES = {
     'doubanbook.pipelines.JsonWithEncodingPipeline': 300,
